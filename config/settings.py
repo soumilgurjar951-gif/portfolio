@@ -13,6 +13,11 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver').split(',')
 # For Render / Railway: set DJANGO_ALLOWED_HOSTS=".onrender.com,.up.railway.app,yourdomain.com"
+# Vercel frontend origin(s) allowed to call /api/* (comma-separated, no trailing slash):
+#   CORS_ALLOWED_ORIGINS="https://portfolio-xyz.vercel.app"
+CORS_ALLOWED_ORIGINS = [
+    o.strip() for o in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',') if o.strip()
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,11 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',  # cross-origin API for the Vercel-hosted React frontend
     'apps.portfolio',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # must sit above CommonMiddleware
     'whitenoise.middleware.WhiteNoiseMiddleware',  # serve static in prod (pip install whitenoise)
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

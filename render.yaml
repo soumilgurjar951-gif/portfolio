@@ -1,0 +1,22 @@
+# Render Blueprint — one-click backend deploy.
+# Dashboard → New → Blueprint → select repo → Apply. Then copy the public URL
+# into the Vercel frontend env var VITE_API_URL (see frontend/vercel.json + README).
+services:
+  - type: web
+    name: soumil-portfolio
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DJANGO_DEBUG
+        value: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_ALLOWED_HOSTS
+        value: .onrender.com
+      - key: PORTFOLIO_EMAIL
+        value: soumilgurjar951@gmail.com
+      # After Vercel frontend is live, set this to its URL (no trailing slash):
+      # - key: CORS_ALLOWED_ORIGINS
+      #   value: https://your-frontend.vercel.app
