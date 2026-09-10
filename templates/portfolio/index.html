@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Soumil Gurjar — AI & Full-Stack Developer | Django · Open to Internship{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="status-pill" data-hero="pill">
+        <span class="status-dot"></span> OPEN TO INTERNSHIP · DJANGO / FULL-STACK ROLES
+      </div>
+      <h1 id="heroTitle">
+        <span class="line"><span class="line-inner">Soumil Gurjar</span></span>
+        <span class="line"><span class="line-inner glitch">AI &amp; Full-Stack</span></span>
+        <span class="line"><span class="line-inner">Developer</span></span>
+      </h1>
+      <p class="hero-sub" data-hero="sub">
+        <strong>Django backend &amp; full-stack developer</strong> building real web apps &amp; AI tools.
+        Based in {{ LOCATION }} — I ship working products, not just tutorials.
+      </p>
+      <div class="hero-ctas" data-hero="ctas">
+        <a href="#work" class="btn btn-primary">View My Work ↓</a>
+        <!-- TODO(Soumil): upload resume PDF to static/resume/ and keep this URL in settings.PORTFOLIO_RESUME_URL -->
+        <a href="{{ PORTFOLIO_RESUME_URL }}" class="btn btn-ghost" download>⤓ Download Resume</a>
+      </div>
+      <div class="chips" data-hero="chips">
+        <span class="chip">Django</span>
+        <span class="chip">Python</span>
+        <span class="chip">Full-Stack</span>
+        <span class="chip hot">● Open to Internship</span>
+      </div>
+      <div class="hero-meta" data-hero="meta">
+        <div><b>7</b> shipped apps</div>
+        <div><b>7</b> projects · edu → freelance</div>
+        <div><b>24–48h</b> reply time</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-hero="visual">
+      <div class="holo-card" id="tiltCard">
+        <div class="holo-top">
+          <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <span style="margin-left:8px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">soumil@dev — portfolio.py</span>
+        </div>
+        <div class="holo-body">
+<span class="k">class</span> <span class="s">FullStackDev</span>:
+    name = <span class="s">"Soumil Gurjar"</span>
+    base = <span class="s">"Indore, India"</span>
+    stack = [<span class="s">"Django"</span>, <span class="s">"Python"</span>,
+             <span class="s">"DRF"</span>, <span class="s">"JS"</span>]
+    focus = <span class="s">"backend → full-stack"</span>
+
+    <span class="k">def</span> <span class="f">ship</span>(self, idea):
+        <span class="k">return</span> self.models(idea) \
+            .views().templates().deploy()
+    <br>
+<span class="f">>>> dev.ship</span>(<span class="s">"your_next_feature"</span>)
+<span class="s">✓ deployed &amp; working</span> <span class="typed-caret"></span>
+        </div>
+        <div class="holo-foot"><span>● django · live</span><span>lat 22.72 / lon 75.86</span></div>
+      </div>
+      <div class="float-badge fb1"><b>◈</b> Django · DRF · ORM</div>
+      <div class="float-badge fb2"><b>⬢</b> 7 real projects on GitHub</div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><div class="mouse"></div>SCROLL</div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span><b>DJANGO</b> · PYTHON · <b>DRF</b> · POSTGRESQL · HTML/CSS · <b>JAVASCRIPT</b> · AUTH · CRUD · ORM · <b>OPEN TO INTERNSHIP</b> ·&nbsp;</span>
+    <span><b>DJANGO</b> · PYTHON · <b>DRF</b> · POSTGRESQL · HTML/CSS · <b>JAVASCRIPT</b> · AUTH · CRUD · ORM · <b>OPEN TO INTERNSHIP</b> ·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">01 // Selected Work</div>
+      <h2 class="h2">Projects that <span class="grad">actually ship.</span></h2>
+      <p class="lead">Seven real builds across education, commerce, social, business, healthcare, finance and freelancing. Click any card for the full case study.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Filter projects">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="web-apps">Web Apps</button>
+      <button class="filter" data-filter="ecommerce">E-Commerce</button>
+      <button class="filter" data-filter="social">Social</button>
+      <button class="filter" data-filter="others">Others</button>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+      {% for p in projects %}
+      <article class="proj reveal" data-category="{{ p.category }}" data-project="{{ p.slug }}" tabindex="0" role="button" aria-label="Open {{ p.title }} case study">
+        <div class="proj-thumb thumb-{{ p.accent }}">
+          <div class="thumb-grid"></div>
+          <span class="glyph">{{ p.icon }}</span>
+          <span class="proj-cat">{{ p.category_label }}</span>
+        </div>
+        <div class="proj-body">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.tagline }}</p>
+          <div class="tags">{% for t in p.stack %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+          <div class="proj-foot">
+            <a class="proj-link" href="{{ p.repo }}" target="_blank" rel="noopener" data-stop>View on GitHub ↗</a>
+            <span class="proj-open">Case study →</span>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">02 // About</div>
+      <h2 class="h2">Builder from <span class="grad">Indore.</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="photo-frame reveal">
+        <div class="photo-ph">
+          <div class="avatar">SG</div>
+          <!-- TODO(Soumil): replace avatar block with <img src="{% static 'img/soumil.jpg' %}" alt="Soumil Gurjar"> -->
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">SOUMIL_GURJAR.JPG · placeholder</div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted-2)">drop photo → static/img/soumil.jpg</div>
+        </div>
+        <div class="cap"><span>📍 {{ LOCATION }}</span><span>● available</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="badge-open">● OPEN TO INTERNSHIP</span>
+        <p>I&rsquo;m <strong>Soumil</strong>, an engineering student from Indore who loves building <strong>real web applications with Django and Python</strong>.</p>
+        <p>I focus on <strong>backend and full-stack development</strong>, turning ideas into working products — models, auth, feeds, carts, scheduling, deployments. My seven repos span university management, e-commerce, social networking, business sites, hospital workflows, an AI money coach and a freelance marketplace.</p>
+        <p>I&rsquo;m currently looking for <strong>internship opportunities</strong> where I can contribute to real Django / full-stack projects, own features end-to-end, and learn from a strong team.</p>
+        <div class="do-grid">
+          <div class="do"><div class="ico">⚙️</div><h4>Backend</h4><p>Django, DRF, ORM, auth, REST APIs that stay clean.</p></div>
+          <div class="do"><div class="ico">◈</div><h4>Full-Stack</h4><p>Templates + HTML/CSS/JS, responsive UI on top of solid models.</p></div>
+          <div class="do"><div class="ico">✦</div><h4>AI Direction</h4><p>Wiring API-driven AI features into Django apps.</p></div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-sm" href="{{ GITHUB_URL }}" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost btn-sm" href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">03 // Arsenal</div>
+      <h2 class="h2">Skills &amp; <span class="grad">technologies.</span></h2>
+      <p class="lead">Hover any chip to see where I&rsquo;ve actually used it. No badge-collecting — everything maps to a shipped repo.</p>
+    </div>
+    <div class="skills-grid">
+      {% for g in skill_groups %}
+      <div class="skill-group reveal">
+        <h3>{{ g.title }}</h3>
+        <div class="skill-pills">
+          {% for name, tip in g.skills %}
+          <span class="pill" data-tip="{{ tip }}">{{ name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">04 // Contact</div>
+      <h2 class="h2">Let&rsquo;s build <span class="grad">something.</span></h2>
+      <p class="lead">I&rsquo;m open to <strong style="color:#fff">internship</strong> and <strong style="color:#fff">full-stack / Django developer</strong> roles. If you need someone who can own features end-to-end in Django and ship real products, let&rsquo;s talk.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="form-card reveal">
+        {% if messages %}{% for m in messages %}<div class="flash {{ m.tags }}">{{ m }}</div>{% endfor %}{% endif %}
+        <form method="post" action="/#contact" id="contactForm" novalidate>
+          {% csrf_token %}
+          <div class="field-row">
+            <div class="field"><label for="fName">Name</label><input id="fName" name="name" placeholder="Your name" required></div>
+            <div class="field"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" placeholder="you@company.com" required></div>
+          </div>
+          <div class="field">
+            <label for="fOpp">Opportunity type</label>
+            <select id="fOpp" name="opportunity">
+              <option value="internship">Internship</option>
+              <option value="fulltime">Full-time</option>
+              <option value="collab">Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" name="message" placeholder="Hi Soumil — we have a Django internship…" required></textarea></div>
+          <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send Message ✦</button>
+        </form>
+      </div>
+      <div class="direct-card reveal">
+        <h3 style="font-family:var(--font-display);margin:0 0 6px">Direct lines</h3>
+        <p style="color:var(--muted);font-size:14px;margin:0 0 18px">Prefer email or DMs? Reach me here — fastest response on email.</p>
+        <!-- TODO(Soumil): set PORTFOLIO_EMAIL env var to your real email -->
+        <a class="row" href="mailto:{{ PORTFOLIO_EMAIL }}"><span class="ric">✉</span><span><small>EMAIL</small><b>{{ PORTFOLIO_EMAIL }}</b></span></a>
+        <a class="row" href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener"><span class="ric">in</span><span><small>LINKEDIN</small><b>linkedin.com/in/soumil-gurjar</b></span></a>
+        <a class="row" href="{{ GITHUB_URL }}" target="_blank" rel="noopener"><span class="ric">⬡</span><span><small>GITHUB</small><b>github.com/soumilgurjar951-gif</b></span></a>
+        <a class="row" href="#top"><span class="ric">📍</span><span><small>LOCATION</small><b>{{ LOCATION }}</b></span></a>
+        <div class="reply-note">◉ I usually reply within 24–48 hours.<br>◉ Currently: <b style="color:#a7f3d0">Open to Internship · Open to Full-Stack / Django Roles</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASE-STUDY MODAL ================= -->
+<div class="modal-back" id="modalBack" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3 id="mTitle"></h3><p class="sub" id="mTag"></p></div>
+      <button class="modal-x" id="mClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="tags" id="mTags"></div>
+      <div class="case-grid">
+        <div class="case"><h4>Problem</h4><p id="mProblem"></p></div>
+        <div class="case"><h4>Solution</h4><p id="mSolution"></p></div>
+        <div class="case"><h4>Your role</h4><p id="mRole"></p></div>
+        <div class="case"><h4>Outcome</h4><p id="mOutcome"></p></div>
+        <div class="case full"><h4>Learnings</h4><p id="mLearn"></p></div>
+      </div>
+      <div class="modal-ctas">
+        <a class="btn btn-primary btn-sm" id="mRepo" href="#" target="_blank" rel="noopener">View on GitHub ↗</a>
+        <a class="btn btn-ghost btn-sm" id="mPage" href="#">Full page →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JSON payload for modal (truthful, from views.PROJECTS) -->
+<script id="projects-data" type="application/json">
+[{% for p in projects %}{
+  "slug":"{{ p.slug }}","title":"{{ p.title|escapejs }}","tagline":"{{ p.tagline|escapejs }}",
+  "repo":"{{ p.repo }}","stack":[{% for s in p.stack %}"{{ s|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
+  "problem":"{{ p.problem|escapejs }}","solution":"{{ p.solution|escapejs }}",
+  "role":"{{ p.role|escapejs }}","outcome":"{{ p.outcome|escapejs }}",
+  "learnings":"{{ p.learnings|join:', '|escapejs }}"
+}{% if not forloop.last %},{% endif %}{% endfor %}]
+</script>
+<!-- stack fallback rendered server-side (used if JSON stack parse differs) -->
+{% endblock %}

@@ -1,0 +1,5 @@
+Django>=5.0
+whitenoise>=6.6
+# Production Postgres (Render/Railway) — uncomment if you switch from SQLite:
+# dj-database-url>=2.1
+# psycopg[binary]>=3.1
